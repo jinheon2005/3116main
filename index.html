@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2023-09-25 수행평가</title>
+    <script>
+        function add(){
+            var num = document.createElement("div");
+            num.innerHTML = document.getElementById("text").value;
+            document.getElementById("list").appendChild(num);
+            num.onclick = remove;
+            document.getElementById("list").appendChild(num);
+            save();
+        }
+
+        function remove(){
+            document.getElementById("list").removeChild(this);
+            save();
+        }
+
+        function save(){
+            localStorage.Storage = document.getElementById("list").innerHTML;
+        }
+
+        function load(){
+            document.getElementById("list").innerHTML = localStorage.Storage;
+            for(var i=0; i<list.children.length; i++){
+                list.children[i].onclick=remove;
+            }
+        }
+    </script>
+
+    <style>
+        html{
+            width: 100%;
+            height: 100%;
+            margin: 0px;
+        }
+
+        body{
+            width: 100%;
+            height: 100%;
+            background-color: pink;
+            text-align: center;
+        }
+        .web{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .main{
+            display: block;
+            background-color: #ffffff;
+            text-align: center;
+            width: 500px;
+            height: 700px;
+            border-radius: 50px;
+        }
+
+        .main textarea{
+            margin-top: 50px;
+            width: 350px;
+            height: 200px;
+        }
+        .main input{
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>My Page에 오신 것을 환영합니다.</h1>
+    <p>방명록을 작성해주세요.</p>
+    <div class="web">
+    <div class="main">
+    <textarea id="text"></textarea><br>
+    <input type="button" value="입력" onclick="add();">
+    <div id="list"></div>
+    </div>
+    </div>
+    <script>
+
+        if(localStorage.Storage){
+            load();
+        }
+    </script>
+</body>
+</html>
